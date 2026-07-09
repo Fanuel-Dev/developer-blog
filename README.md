@@ -18,12 +18,5 @@ add login page and dsheborde and content post page
 
 Strategized CSS placement for new page components
 Strategized CSS placement for new page components
-Now the header nav and view containers:
-
-
-Edited 4 files
-Edited 4 files
-
-
-cc
+Now the header nav and view container
  
