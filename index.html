@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>devlog — a developer's changelog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><span class="prompt">~/</span>devlog<span class="cursor"></span></div>
+    <nav class="primary">
+      <button class="active" data-view="feed" onclick="showFeed()">feed</button>
+      <button data-view="tags" onclick="scrollToTags()">tags</button>
+      <button data-view="about" onclick="toggleAbout()">about</button>
+    </nav>
+    <div class="search-wrap">
+      <input id="searchInput" type="text" placeholder="search posts..." oninput="renderFeed()">
+    </div>
+    <button class="btn-new" onclick="openModal()">+ new post</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- FEED VIEW -->
+  <div id="feedView">
+    <div class="layout">
+      <div>
+        <div class="repo-bar">
+          <h1>main <span id="postCountLabel">— 0 entries</span></h1>
+          <div class="repo-stats"><span><b id="totalLikes">0</b> likes</span><span><b id="totalComments">0</b> comments</span></div>
+        </div>
+        <div id="logList"></div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="side-block">
+          <div class="side-title">Maintainer</div>
+          <div class="author-card">
+            <div class="avatar">JS</div>
+            <div>
+              <div class="author-name">Jordan Silva</div>
+              <div class="author-sub">backend &amp; infra</div>
+            </div>
+          </div>
+        </div>
+        <div class="side-block" id="tagsBlock">
+          <div class="side-title">Branches (tags)</div>
+          <div class="branch-list" id="branchList"></div>
+        </div>
+        <div class="side-block">
+          <div class="side-title">Trending commits</div>
+          <div id="trendList"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- POST DETAIL VIEW -->
+  <div id="postView" style="display:none;"></div>
+
+</main>
+
+<!-- NEW POST MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h2>commit new post</h2>
+    <p class="sub">git commit -m "your next entry"</p>
+    <div class="field">
+      <label>Title</label>
+      <input type="text" id="newTitle" placeholder="e.g. Why our queue kept dropping jobs">
+    </div>
+    <div class="field">
+      <label>Tags (comma separated)</label>
+      <input type="text" id="newTags" placeholder="rust, performance, war-story">
+    </div>
+    <div class="field">
+      <label>Content</label>
+      <textarea id="newContent" placeholder="Write in plain text. Blank lines separate paragraphs."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal()">cancel</button>
+      <button class="btn-new" onclick="submitPost()">publish</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+ <script src="script.js"></script>
+</body>
+</html>
